@@ -20,21 +20,25 @@ http
 			})
 		}
 		if (urlParse.pathname.includes('/mailing')) {
-			const { dolar, euro, uf, utm } = await getData()
-			const mensaje = template(dolar, euro, uf, utm)
 			if (correos) {
+				const { dolar, euro, uf, utm } = await getData()
+				const mensaje = template(dolar, euro, uf, utm)
 				enviar(correos.split(','), asunto, contenido + mensaje)
-				fs.writeFile(
-					`./correos/${uuidv4()}.txt`,
-					`${contenido + mensaje}`,
-					(err) => {
-						if (err) console.log(err)
-						else console.log('archivo guardado')
+					.then((data) => {
+						console.log(data);
+						fs.writeFile(
+							`./correos/${uuidv4()}.txt`,
+							`${contenido + mensaje}`,
+							(err) => {
+								if (err) res.end(`Error:${err}`)
+								else res.end('correo enviado')
+							}
+						)
 					}
-				)
-				res.end('mails enviados')
+					)
+					.catch((err) => res.end('error enviando correo'))
 			} else {
-				res.end('No se ha ingresado ningun correo')
+				res.end('no se enviaron correos')
 			}
 		}
 	})
