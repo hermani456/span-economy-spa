@@ -1,0 +1,5 @@
+<p>chao456<br></p>Hola! Los indicadores economicos de hoy son los siguientes:
+ El valor del dolar el dia de hoy es: 867.93
+ El valor del euro el dia de hoy es: 899.78
+ El valor de la uf el dia de hoy es: 32431.33
+ El valor de la utm el dia de hoy es: 56762
